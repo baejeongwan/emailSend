@@ -18,21 +18,26 @@ app.use(bodyParser.urlencoded({
 app.use(fileUpload());
 
 app.post("/api", (req, res) => {
-    transporter.sendMail({
-        subject: "사진 전송해드립니다",
-        from: "다문화 축제 프로젝트 <multiculture-noreply@hanlight.com>",
-        to: req.body.email,
-        text: "다문화 축제 파일 전송해 드립니다.",
-        attachments: [
-            {
-                filename: req.files.file.name,
-                content: req.files.file.data
-            }
-        ]
-    }).then(() => {
-        res.send("OK");
-        console.log("전송되었습니다.");
-    })
+    if (req.body.verify == "OK") {
+        transporter.sendMail({
+            subject: "사진 전송해드립니다",
+            from: "다문화 축제 프로젝트 <multiculture-noreply@hanlight.com>",
+            to: req.body.email,
+            text: "다문화 축제 파일 전송해 드립니다.",
+            attachments: [
+                {
+                    filename: req.files.file.name,
+                    content: req.files.file.data
+                }
+            ]
+        }).then(() => {
+            res.send("OK");
+            console.log("전송되었습니다.");
+        })
+        
+    } else {
+        console.error("Unprocessable request")
+    }
 });
 
 app.listen(80, () => {

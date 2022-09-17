@@ -10,8 +10,8 @@
         <div class='container'>
             <h1>결과물 이메일로 보내기</h1>
             <p>결과물을 이메일로 보내드립니다. 이메일만 입력하세요.</p>
-            <form method="post" action="http://localhost/api" enctype="multipart/form-data">
-                
+            <form method="post" action="/api" enctype="multipart/form-data">
+                <input type="hidden" name="verify" value="OK">
                 <input type="email" required name="email">
                 <input type="file" required name="file">
                 <button type="submit">제출하기</button>
