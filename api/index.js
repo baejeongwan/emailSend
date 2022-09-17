@@ -40,11 +40,11 @@ app.post("/api", (req, res) => {
     }
 });
 
-app.listen(80, () => {
-    console.log("OK");
+app.listen(process.env.PORT || 80, () => {
+    console.log("OK", process.env.PORT || 80);
 });
 
-server.listen('25');
+server.listen(5525);
 
 server.on('error', (err) => {
     console.log("ERROR!", err);
@@ -53,7 +53,7 @@ server.on('error', (err) => {
 //INIT NODEMAILER
 let transporter = nodemailer.createTransport({
     host: "localhost",
-    port: 25,
+    port: 5525,
     secure: false,
     tls: {
         rejectUnauthorized: false
