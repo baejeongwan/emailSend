@@ -1,15 +1,10 @@
 require('dotenv').config();
 const path = require('path');
-//const smtpServer = require('smtp-server').SMTPServer;
 const nodemailer = require('nodemailer');
 const express = require('express');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const app = express();
-/*const server = new smtpServer({
-    authMethods: ['PLAIN', 'LOGIN'],
-    authOptional: true
-})*/
 
 systemLog();
 
@@ -52,31 +47,19 @@ app.listen(process.env.PORT || 80, () => {
     console.log("OK", process.env.PORT || 80);
 });
 
-/*server.listen(5525);
-
-server.on('error', (err) => {
-    console.log("ERROR!", err);
-});*/
 
 //INIT NODEMAILER
-/*let transporter = nodemailer.createTransport({
-    /*host: "localhost",
-    port: 5525,
-    name: "127.0.0.1",
-    secure: false,
-    tls: {
-        rejectUnauthorized: false
-    }
-    sendmail: true,
-});*/
+let transporter = nodemailer.createTransport({
+    sendmail: true
+});
 
-/*transporter.verify(function (error, success) {
+transporter.verify(function (error, success) {
     if (error) {
         console.log("ERROR: ", error);
     } else {
         console.log("EMAIL OK");
     }
-})*/
+})
 
 function systemLog() {
     console.log("===============================")
